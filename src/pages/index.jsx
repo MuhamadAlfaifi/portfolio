@@ -158,7 +158,7 @@ function Work() {
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
         <SocialLink href="https://github.com/MuhamadAlfaifi" target="_blank" icon={GitHubIcon} />
         <Link href="https://github.com/MuhamadAlfaifi" target="_blank">
-          <span className="ml-3">Work</span>
+          <span className="ml-3">Public Work</span>
         </Link>
       </h2>
       <ol className="mt-6 space-y-4">
