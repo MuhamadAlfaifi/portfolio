@@ -19,6 +19,7 @@ import logoStarbucks from '@/images/logos/starbucks.svg'
 import image1 from '@/images/photos/image-1.jpg'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
+import undraw_Male_avatar from '@/images/photos/undraw_Male_avatar.png'
 import { formatDate } from '@/lib/formatDate'
 import { generateRssFeed } from '@/lib/generateRssFeed'
 import { getAllArticles } from '@/lib/getAllArticles'
@@ -254,9 +255,19 @@ export default function Home({ articles }) {
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-16">
-            {articles.map((article) => (
+            {/* {articles.map((article) => (
               <Article key={article.slug} article={article} />
-            ))}
+            ))} */}
+            {/* use image undraw_Male_avatar rounded-lg */}
+            <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 532 532" className="w-full h-full">
+                <circle cx="270.76" cy="260.93" r="86.35" fill="#ffb6b6"/>
+                <path fill="#ffb6b6" d="m221.19 360.05-3.9-39.43 77.9-14.57 46 112-80 92-57-112 17-38z"/>
+                <path fill="#2f2e41" d="m216.04 340.36 17.03 3.85s-13.39-42.46-8.85-46.51c4.55-4.06 15.68 2.33 15.68 2.33l11.7 13.12 14.26-14.51s15.48-19.24 21.53-24.65-3.67-25.46-3.67-25.46 89.9-24.24 56.44-67.84c0 0-19.6-34.19-26-23.05-6.38 11.14-14-6.55-14-6.55l-23.25 4.42s-45.9-27.06-89.45 30.83c-43.56 57.9 28.58 154.02 28.58 154.02Z"/>
+                <path fill="#00bfa6" d="M433.16 472.95C385.97 511.21 327.59 532 266 532c-56.24 0-109.81-17.34-154.62-49.48l.23-2.5c1.19-13 2.25-25.64 2.95-36.12 2.71-40.69 97.64-67.81 97.64-67.81s.43.43 1.29 1.18c5.24 4.6 26.51 21.28 63.81 25.94 33.26 4.16 44.21-15.57 47.52-25.02 1-2.88 1.3-4.81 1.3-4.81l97.64 46.11c6.37 9.1 8.86 28.7 9.35 50.73l.05 2.73Z"/>
+                <path fill="#3f3d56" d="M454.09 77.91C403.85 27.67 337.05 0 266 0S128.15 27.67 77.91 77.91C27.67 128.15 0 194.95 0 266c0 64.85 23.05 126.16 65.29 174.57a267.43 267.43 0 0 0 33.88 32.64l.08.07c3.97 3.2 8.01 6.28 12.13 9.24C156.19 514.66 209.76 532 266 532c61.59 0 119.97-20.79 167.16-59.05a272.4 272.4 0 0 0 31.76-30.34C508.29 393.89 532 331.77 532 266c0-71.05-27.67-137.85-77.91-188.09Zm10.18 362.21a264.23 264.23 0 0 1-31.16 30.1 263.36 263.36 0 0 1-72.83 42.38A262.62 262.62 0 0 1 266 530a262.7 262.7 0 0 1-153.63-49.43l-.76-.55a254.6 254.6 0 0 1-21.47-17.3 265.83 265.83 0 0 1-24.24-24.71A262.82 262.82 0 0 1 2 266C2 120.43 120.43 2 266 2s264 118.43 264 264a262.84 262.84 0 0 1-65.73 174.12Z"/>
+              </svg>
+            </div>
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
             <Work />
