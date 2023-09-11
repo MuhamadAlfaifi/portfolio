@@ -12,7 +12,7 @@ import {
   LinkedInIcon,
   TwitterIcon,
 } from '@/components/SocialIcons'
-import logoAirbnb from '@/images/logos/sentimetric.png'
+import logoAirbnb from '@/images/logos/airbnb.png'
 import logoSentimetric from '@/images/logos/sentimetric.svg'
 import logoFacebook from '@/images/logos/cosmos.svg'
 import logoPlanetaria from '@/images/logos/planetaria.svg'
@@ -20,7 +20,6 @@ import logoStarbucks from '@/images/logos/starbucks.svg'
 import image1 from '@/images/photos/image-1.jpg'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
-import undraw_Male_avatar from '@/images/photos/undraw_Male_avatar.png'
 import { formatDate } from '@/lib/formatDate'
 import { generateRssFeed } from '@/lib/generateRssFeed'
 import { getAllArticles } from '@/lib/getAllArticles'
@@ -266,7 +265,6 @@ export default function Home({ articles }) {
             {/* {articles.map((article) => (
               <Article key={article.slug} article={article} />
             ))} */}
-            {/* use image undraw_Male_avatar rounded-lg */}
             <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 532 532" className="w-full h-full">
                 <circle cx="270.76" cy="260.93" r="86.35" fill="#ffb6b6"/>
