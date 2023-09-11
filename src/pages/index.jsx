@@ -12,7 +12,8 @@ import {
   LinkedInIcon,
   TwitterIcon,
 } from '@/components/SocialIcons'
-import logoAirbnb from '@/images/logos/airbnb.png'
+import logoAirbnb from '@/images/logos/sentimetric.png'
+import logoSentimetric from '@/images/logos/sentimetric.svg'
 import logoFacebook from '@/images/logos/cosmos.svg'
 import logoPlanetaria from '@/images/logos/planetaria.svg'
 import logoStarbucks from '@/images/logos/starbucks.svg'
@@ -137,6 +138,13 @@ function Newsletter() {
 
 function Work() {
   let work = [
+    {
+      company: 'مقياس',
+      title: 'https://github.com/MuhamadAlfaifi/sentimetric',
+      logo: logoSentimetric,
+      start: '',
+      end: '',
+    },
     {
       company: 'الأرشيف الإلكتروني',
       title: 'https://github.com/MuhamadAlfaifi/documents-indexing-app',
