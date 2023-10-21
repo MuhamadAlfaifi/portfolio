@@ -14,6 +14,7 @@ import {
 } from '@/components/SocialIcons'
 import logoAirbnb from '@/images/logos/airbnb.png'
 import logoSentimetric from '@/images/logos/sentimetric.svg'
+import logoQc from '@/images/logos/react-qc.svg'
 import logoFacebook from '@/images/logos/cosmos.svg'
 import logoPlanetaria from '@/images/logos/planetaria.svg'
 import logoStarbucks from '@/images/logos/starbucks.svg'
@@ -138,11 +139,20 @@ function Newsletter() {
 function Work() {
   let work = [
     {
+      company: 'react-qc',
+      title: 'https://npmjs.com/package/react-qc',
+      logo: logoQc,
+      start: '',
+      end: '',
+      chips: ['React', 'TypeScript', 'npm'],
+    },
+    {
       company: 'مقياس',
       title: 'https://github.com/MuhamadAlfaifi/sentimetric',
       logo: logoSentimetric,
       start: '',
       end: '',
+      chips: ['Next.js', 'Tailwind CSS', 'Vercel'],
     },
     {
       company: 'الأرشيف الإلكتروني',
@@ -150,6 +160,7 @@ function Work() {
       logo: logoAirbnb,
       start: '',
       end: '',
+      chips: ['Laravel', 'Postgres', 'Ploi.io'],
     },
     {
       company: 'infolab',
@@ -157,6 +168,7 @@ function Work() {
       logo: logoFacebook,
       start: '',
       end: '',
+      chips: [],
     },
   ]
 
@@ -181,21 +193,20 @@ function Work() {
               </dd>
               <dt className="sr-only">Role</dt>
               <dd className="text-xs text-zinc-500 dark:text-zinc-400 truncate">
-                {role.title}
+                <a href={role.title} target="_blank" className="hover:underline">
+                  {role.title}
+                </a>
               </dd>
-              <dt className="sr-only">Date</dt>
-              <dd
-                className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
-                aria-label={`${role.start.label ?? role.start} until ${
-                  role.end.label ?? role.end
-                }`}
-              >
-                <time dateTime={role.start.dateTime ?? role.start}>
-                  {role.start.label ?? role.start}
-                </time>
-                <time dateTime={role.end.dateTime ?? role.end}>
-                  {role.end.label ?? role.end}
-                </time>
+              <dt className="sr-only">Chips</dt>
+              <dd className="flex flex-auto gap-x-2 mt-2">
+                {role.chips.map((chip, chipIndex) => (
+                  <span
+                    key={chipIndex}
+                    className="text-xs text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800 rounded-full px-2 py-0.5"
+                  >
+                    {chip}
+                  </span>
+                ))}
               </dd>
             </dl>
           </li>
@@ -252,9 +263,8 @@ export default function Home({ articles }) {
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
             I’m Muhamad Alfaifi, a Software engineer with a deep proficiency in 
             JavaScript, React. My passion for 
-            UI/UX design complements my technical expertise. 
-            I’ve architected enterprise frontend. I’m eager to share my work 
-            and journey!
+            UI/UX design complements my technical expertise. I’m eager 
+            to share my work and journey!
           </p>
         </div>
       </Container>
