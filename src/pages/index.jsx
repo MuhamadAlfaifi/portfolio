@@ -162,14 +162,6 @@ function Work() {
       end: '',
       chips: ['Laravel', 'Postgres', 'Ploi.io'],
     },
-    {
-      company: 'infolab',
-      title: 'https://infolab.tamu.edu/',
-      logo: logoFacebook,
-      start: '',
-      end: '',
-      chips: [],
-    },
   ]
 
   return (
@@ -219,23 +211,39 @@ function Work() {
 function Photos() {
   let rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
 
+  const items = [
+    { image: image1, href: 'https://sentimetric.vercel.app/', hlble: 'View Sample' }, 
+    { image: image2, href: 'https://docs-index.site', hlble: 'View App' }, 
+    { image: image3, href: 'https://infolab.tamu.edu', hlble: 'View Site' }
+  ];
+
   return (
     <div className="mt-16 sm:mt-20">
       <div className="-my-4 flex lg:justify-center px-6 gap-5 overflow-scroll py-4 sm:gap-8">
-        {[image1, image2, image3].map((image, imageIndex) => (
-          <div
-            key={image.src}
-            className={clsx(
-              'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl border border-zinc-200 dark:border-none',
+        {items.map((item, imageIndex) => (
+          <div className="relative">
+            <div
+              key={item.image.src}
+              className={clsx(
+                'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl border border-zinc-200 dark:border-none',
+                rotations[imageIndex % rotations.length]
+              )}
+            >
+              <Image
+                src={item.image}
+                alt=""
+                sizes="(min-width: 640px) 18rem, 11rem"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
+            <a href={item.href} target="_blank" className={clsx(
+              'block mx-auto w-max mt-2 dark:text-zinc-100 hover:underline',
               rotations[imageIndex % rotations.length]
-            )}
-          >
-            <Image
-              src={image}
-              alt=""
-              sizes="(min-width: 640px) 18rem, 11rem"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
+            )}>
+              <span>{item.hlble}</span>
+              {/* arrow top right */}
+              <ArrowDownIcon className="h-4 w-4 inline-block ml-1 rotate-[225deg] dark:stroke-zinc-100" />
+            </a>
           </div>
         ))}
       </div>
@@ -263,8 +271,8 @@ export default function Home({ articles }) {
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
             I’m Muhamad Alfaifi, a Software engineer with a deep proficiency in 
             JavaScript, React. My passion for 
-            UI/UX design complements my technical expertise. I’m eager 
-            to share my work and journey!
+            UI/UX design complements my technical expertise. <br />
+            I’m eager to share my work and journey!
           </p>
         </div>
       </Container>
@@ -272,10 +280,10 @@ export default function Home({ articles }) {
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-16">
-            {/* {articles.map((article) => (
+            {articles.map((article) => (
               <Article key={article.slug} article={article} />
-            ))} */}
-            <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
+            ))}
+            {/* <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 532 532" className="w-full h-full">
                 <circle cx="270.76" cy="260.93" r="86.35" fill="#ffb6b6"/>
                 <path fill="#ffb6b6" d="m221.19 360.05-3.9-39.43 77.9-14.57 46 112-80 92-57-112 17-38z"/>
@@ -283,7 +291,7 @@ export default function Home({ articles }) {
                 <path fill="#00bfa6" d="M433.16 472.95C385.97 511.21 327.59 532 266 532c-56.24 0-109.81-17.34-154.62-49.48l.23-2.5c1.19-13 2.25-25.64 2.95-36.12 2.71-40.69 97.64-67.81 97.64-67.81s.43.43 1.29 1.18c5.24 4.6 26.51 21.28 63.81 25.94 33.26 4.16 44.21-15.57 47.52-25.02 1-2.88 1.3-4.81 1.3-4.81l97.64 46.11c6.37 9.1 8.86 28.7 9.35 50.73l.05 2.73Z"/>
                 <path fill="#3f3d56" d="M454.09 77.91C403.85 27.67 337.05 0 266 0S128.15 27.67 77.91 77.91C27.67 128.15 0 194.95 0 266c0 64.85 23.05 126.16 65.29 174.57a267.43 267.43 0 0 0 33.88 32.64l.08.07c3.97 3.2 8.01 6.28 12.13 9.24C156.19 514.66 209.76 532 266 532c61.59 0 119.97-20.79 167.16-59.05a272.4 272.4 0 0 0 31.76-30.34C508.29 393.89 532 331.77 532 266c0-71.05-27.67-137.85-77.91-188.09Zm10.18 362.21a264.23 264.23 0 0 1-31.16 30.1 263.36 263.36 0 0 1-72.83 42.38A262.62 262.62 0 0 1 266 530a262.7 262.7 0 0 1-153.63-49.43l-.76-.55a254.6 254.6 0 0 1-21.47-17.3 265.83 265.83 0 0 1-24.24-24.71A262.82 262.82 0 0 1 2 266C2 120.43 120.43 2 266 2s264 118.43 264 264a262.84 262.84 0 0 1-65.73 174.12Z"/>
               </svg>
-            </div>
+            </div> */}
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
             <Work />
