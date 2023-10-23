@@ -167,8 +167,8 @@ function Work() {
   return (
     <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-        <SocialLink href="https://github.com/MuhamadAlfaifi" target="_blank" rel="noreferrer" icon={GitHubIcon} />
-        <Link href="https://github.com/MuhamadAlfaifi" target="_blank" rel="noreferrer">
+        <SocialLink href="https://github.com/MuhamadAlfaifi?tab=repositories" target="_blank" rel="noreferrer" icon={GitHubIcon} />
+        <Link href="https://github.com/MuhamadAlfaifi?tab=repositories" target="_blank" rel="noreferrer">
           <span className="ml-3">Public Git Repositories</span>
         </Link>
       </h2>
