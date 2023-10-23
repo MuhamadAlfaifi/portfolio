@@ -221,9 +221,8 @@ function Photos() {
     <div className="mt-16 sm:mt-20">
       <div className="-my-4 flex lg:justify-center px-6 gap-5 overflow-scroll py-4 sm:gap-8">
         {items.map((item, imageIndex) => (
-          <div className="relative">
+          <div key={item.image.src} className="relative">
             <div
-              key={item.image.src}
               className={clsx(
                 'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl border border-zinc-200 dark:border-none',
                 rotations[imageIndex % rotations.length]
