@@ -167,8 +167,8 @@ function Work() {
   return (
     <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-        <SocialLink href="https://github.com/MuhamadAlfaifi" target="_blank" icon={GitHubIcon} />
-        <Link href="https://github.com/MuhamadAlfaifi" target="_blank">
+        <SocialLink href="https://github.com/MuhamadAlfaifi" target="_blank" rel="noreferrer" icon={GitHubIcon} />
+        <Link href="https://github.com/MuhamadAlfaifi" target="_blank" rel="noreferrer">
           <span className="ml-3">Public Work</span>
         </Link>
       </h2>
@@ -185,7 +185,7 @@ function Work() {
               </dd>
               <dt className="sr-only">Role</dt>
               <dd className="text-xs text-zinc-500 dark:text-zinc-400 truncate">
-                <a href={role.title} target="_blank" className="hover:underline">
+                <a href={role.title} target="_blank" rel="noreferrer" className="hover:underline">
                   {role.title}
                 </a>
               </dd>
@@ -236,7 +236,7 @@ function Photos() {
                 className="absolute inset-0 h-full w-full object-cover"
               />
             </div>
-            <a href={item.href} target="_blank" className={clsx(
+            <a href={item.href} target="_blank" rel="noreferrer" className={clsx(
               'block mx-auto w-max mt-2 dark:text-zinc-100 hover:underline',
               rotations[imageIndex % rotations.length]
             )}>
