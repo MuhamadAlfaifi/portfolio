@@ -1,0 +1,131 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import Image from 'next/image'
+import blue_street_sign from './blue-street-sign.jpg';
+
+export const meta = {
+  author: 'Muhamad Alfaifi',
+  date: '2023-10-05',
+  title: 'Separation of Concerns: A Case Study for `useAudio()` Custom Hook',
+  description: 'Exploring the importance of separation of concerns in frontend development through a case study of rewriting an open source custom hook.',
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+<Image
+  src={blue_street_sign}
+  alt="Blue street sign in order to indicate 'Separation of Concerns'"
+  width={800}
+  height={600}
+/>
+
+## Preface
+
+In the vast ocean of programming, design patterns serve as lighthouses guiding developers towards cleaner, more efficient code. Among these, the principle of 
+separation of concerns (SoC) stands as a cornerstone, urging us to compartmentalize our code into distinct sections each handling a specific aspect 
+of the functionality. This not only enhances code readability but significantly eases the process of debugging, testing, 
+and scaling our applications. Through a case study of rewriting an open-source `useAudio()`[^1] hook, this article illuminates the pivotal 
+role of SoC in preparing our codebase to accommodate changes, especially in the frontend landscape prone to frequent shifts in requirements and technology.
+
+
+## Separation of Concerns: Preparing for Rewrites
+
+Every line of code we write today is a candidate for a rewrite tomorrow. As the requirements evolve, so must our code. However, the ease with which 
+we can adapt to these changes is heavily influenced by how well-separated our concerns are. 
+
+In the context of our `useAudio()`[^1] hook, it intertwined the core audio handling logic with the React hook logic. While functional, this 
+amalgamation made the hook less flexible to changes and more difficult to extend or reuse in different contexts.
+
+```javascript
+// Initial useAudio hook
+export const useAudio = (/* ... */) => { /* intertwined core logic and React logic */ }
+```
+
+
+## Frontend Change: An Inevitable Reality
+
+In the frontend realm, changes are more of a rule than an exception. New business requirements, user feedback, or technology upgrades often demand us 
+to revisit and revise our code. Preparing for such inevitabilities is prudent. By separating the core logic from the framework or 
+library-specific logic, we build a solid foundation that can withstand the winds of change with grace.
+
+
+### Initial Version [^1]
+
+The initial version of the useAudio hook encapsulated both the core audio handling logic and the React-specific logic within a single function. 
+This entanglement made it harder to identify, isolate, and modify specific behaviors.
+
+```javascript
+// Initial useAudio hook
+export const useAudio = (/* ... */) => { /* intertwined core logic and React logic */ }
+```
+
+
+### Rewritten Version [^2]
+
+In the rewritten version, the core audio handling logic is encapsulated within a dedicated Audio class. The useAudio hook then serves as 
+a bridge, connecting this core logic to the React ecosystem. This separation facilitates a clear understanding of what each part of the code 
+is responsible for, and where to look when changes are required.
+
+```javascript
+// The Audio class encapsulates core audio handling logic
+export class Audio {
+  // ...
+
+  get state() {
+    return {
+      // ...
+      currentTime: this.audio.currentTime,
+      duration: this.audio.duration,
+      // ...
+    };
+  }
+
+  subscribe(listener: TAudioListener) {
+    const _listener = () => listener(this.audio.state);
+
+    this.audio.addEventListener('loadedmetadata', _listener);
+    this.audio.addEventListener('timeupdate', _listener);
+
+    return () => {
+      this.audio.removeEventListener('loadedmetadata', _listener);
+      this.audio.removeEventListener('timeupdate', _listener);
+    };
+  }
+}
+
+// The useAudio hook subscribes to the instance and update its state
+function useAudio(src: string, options: Partial<TAudioOptions> = {}) {
+  const [audio, setAudio] = useState(getInstance({ src, ...options } as TAudioOptions));
+  const [state, setState] = useState<TAudioState>(audio.state);
+
+  useEffect(() => {
+    if (!audio) {
+      setAudio(getInstance({ src, ...options } as TAudioOptions));
+    }
+
+    const unsubscribe = audio.subscribe((state: TAudioState) => startTransition(() =>
+      setState(state)
+    ));
+
+    return unsubscribe;
+  }, [audio]);
+
+  return [state, audio.controls];
+}
+```
+
+
+### Benefits Reaped
+
+By separating concerns, the rewritten version of the useAudio hook brings several benefits to the table:
+
+**Ease of Modification:** With a clear boundary between the core audio logic and the React integration, making modifications or extending functionality becomes a straightforward task.
+
+**Reusability:** The Audio class can be reused across different projects, whether they use React or not, promoting code reusability.
+
+**Testing:** Testing becomes more manageable as we can test the core audio logic independently from the React integration.
+
+**Readability:** The code becomes more readable and understandable, fostering a conducive environment for collaboration and maintenance.
+
+
+[^1]: https://github.com/antonioru/beautiful-react-hooks/blob/master/src/useAudio.ts
+[^2]: https://gist.github.com/MuhamadAlfaifi/042e7616bc8065de7f4f96e152f9b94b
