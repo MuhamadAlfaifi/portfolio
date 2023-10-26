@@ -212,8 +212,8 @@ function Photos() {
   let rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
 
   const items = [
-    { image: image1, href: 'https://sentimetric.vercel.app/', hlble: 'View Sample' }, 
-    { image: image2, href: 'https://docs-index.site', hlble: 'View App' }, 
+    { image: image1, href: 'https://sentimetric.vercel.app/', hlble: 'Explore' }, 
+    { image: image2, href: 'https://docs-index.site', hlble: 'Explore' }, 
     { image: image3, href: 'https://infolab.tamu.edu', hlble: 'View Site' }
   ];
 
