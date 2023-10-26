@@ -270,7 +270,7 @@ export default function Home({ articles }) {
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
             I’m Muhamad Alfaifi, a Software engineer with a deep proficiency in 
             JavaScript, React. My passion for 
-            UI/UX design complements my technical expertise. <br />
+            UI/UX design complements my technical expertise. <br /><br />
             I’m eager to share my work and journey!
           </p>
         </div>
