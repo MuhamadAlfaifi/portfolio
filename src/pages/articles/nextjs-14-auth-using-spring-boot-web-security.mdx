@@ -1,0 +1,61 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const meta = {
+  author: 'Muhamad Alfaifi',
+  date: '2023-11-01',
+  title: 'Easy Nextjs 14 and Spring Boot Security Authentication',
+  description: 'Simple approach that gets you going with most cases for (public/protected) routes in Nextjs 14 when pairing it with spring boot api that is using web security default login form.'
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+## What is Nextjs 14?
+
+Nextjs is a framework for building server-side rendered (SSR) React applications. 
+It is a great framework that provides a lot of features out of the box. It is also very easy to use and get started with. 
+It is a great choice for building a React application that needs to be server-side rendered.
+
+## What is Spring Boot Security?
+
+Spring Security is a framework that focuses on providing both authentication and authorization to Java applications.
+
+## The Problem?
+
+When integrating Nextjs 14 with Rest Java Rest API, you will face a problem with the authentication process. leaving you to implement your own 
+authentication process or use a third-party library like next-auth.
+
+The default authentication for java applications uses cookies to store the session id and a login form.
+
+Rest APIs done this way will leave you with a problem of how to use nextjs framework with it.
+
+## The Solution?
+
+The solution is to use the same session that is created by Spring Security in Nextjs 14.
+
+## How to do it?
+
+First, you need to clone the the following template [https://github.com/MuhamadAlfaifi/nextjs-springboot-auth](https://github.com/MuhamadAlfaifi/nextjs-springboot-auth)
+
+Then, create a `.env` enviroment file in the root of the project and add the following variable
+
+```bash
+SPRING_BOOT_HOST=http://localhost:8080
+```
+
+Thats it! 🎉  Customize the login form in `src/(api)/login/page.tsx` using tailwind classes and you are good to go.
+
+Now, from server components you will get automatic redirection to /login route and protection if you fetched the rest api using `api()` function.
+
+for example, if you want to fetch the user profile from the rest api, you can do the following
+
+```tsx
+'use server';
+
+import { api } from '@/(api)/api'
+
+export default async function MyServerComponent() {
+  const user = await api('/user/profile')
+  
+  return <div>{user.name}</div>
+}
+```
