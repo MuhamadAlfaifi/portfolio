@@ -152,7 +152,7 @@ function Work() {
       logo: logoSentimetric,
       start: '',
       end: '',
-      chips: ['Next.js', 'Tailwind CSS', 'Vercel'],
+      chips: ['Next.js', 'UI/UX', 'Vercel'],
     },
     {
       company: 'الأرشيف الإلكتروني',
