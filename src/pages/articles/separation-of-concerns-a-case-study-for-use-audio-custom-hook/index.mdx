@@ -64,8 +64,13 @@ is responsible for, and where to look when changes are required.
 
 ```javascript
 // The Audio class encapsulates core audio handling logic
-export class Audio {
-  // ...
+class Audio {
+  private audio: HTMLAudioElement;
+
+  constructor (options: TAudioOptions) {
+    this.audio = new Audio(options.src);
+    // ...
+  }
 
   get state() {
     return {
@@ -88,17 +93,17 @@ export class Audio {
     };
   }
 }
+```
 
-// The useAudio hook subscribes to the instance and update its state
+```javascript
+// The useAudio hook has only react concerns
+// 1. subscribes to the instance state changes
+// 2. adds React-specific logic like state and re-rendering
 function useAudio(src: string, options: Partial<TAudioOptions> = {}) {
   const [audio, setAudio] = useState(getInstance({ src, ...options } as TAudioOptions));
   const [state, setState] = useState<TAudioState>(audio.state);
 
   useEffect(() => {
-    if (!audio) {
-      setAudio(getInstance({ src, ...options } as TAudioOptions));
-    }
-
     const unsubscribe = audio.subscribe((state: TAudioState) => startTransition(() =>
       setState(state)
     ));
