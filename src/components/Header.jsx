@@ -218,7 +218,7 @@ function AvatarContainer({ className, ...props }) {
     <div
       className={clsx(
         className,
-        'h-max w-max rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10'
+        
       )}
       {...props}
     />
@@ -246,7 +246,7 @@ function Avatar({ large = false, className, ...props }) {
           priority
         /> */}
         <svg
-          className={`md:transform md:scale-125 md:origin-top-left mt-6`}
+          className={`md:transform md:scale-125 md:origin-top-left ${large ? 'mt-6' : 'mt-3'}`}
           width="200"
           height="64"
           xmlns="http://www.w3.org/2000/svg"
