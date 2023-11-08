@@ -246,7 +246,7 @@ function Avatar({ large = false, className, ...props }) {
           priority
         /> */}
         <svg
-          className={`md:transform md:scale-125 md:origin-top-left`}
+          className={`md:transform md:scale-125 md:origin-top-left mt-6`}
           width="200"
           height="64"
           xmlns="http://www.w3.org/2000/svg"
