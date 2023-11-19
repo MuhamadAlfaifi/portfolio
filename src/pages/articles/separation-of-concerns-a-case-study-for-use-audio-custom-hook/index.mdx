@@ -15,6 +15,13 @@ export default (props) => <ArticleLayout meta={meta} {...props} />
   alt="Blue street sign in order to indicate 'Separation of Concerns'"
 />
 
+# TLDR
+- Lift up state in audio class
+- use singleton pattern to ensure only one instance of audio class is created
+- use effect to subscribe to state changes and select the state to be used by the component
+- react component only has react concerns and audio class only has audio concerns (separation of concerns)
+
+
 ## Preface
 
 In the vast ocean of programming, design patterns serve as lighthouses guiding developers towards cleaner, more efficient code. Among these, the principle of 
@@ -98,20 +105,24 @@ class Audio {
 ```javascript
 // The useAudio hook has only react concerns
 // 1. subscribes to the instance state changes
-// 2. adds React-specific logic like state and re-rendering
-function useAudio(src: string, options: Partial<TAudioOptions> = {}) {
-  const [audio, setAudio] = useState(getInstance({ src, ...options } as TAudioOptions));
-  const [state, setState] = useState<TAudioState>(audio.state);
+// 2. adds React-specific logic like selector state and re-rendering when state changes
+function useAudio(src: string, options: Partial<TAudioOptions> = {}, select: (state: TAudioState) => any = (state) => state) {
+  const [audio] = useState(() => getInstance({ src, ...options } as TAudioOptions));
+  const selectRef = useRef(options.select);
+  const [selectedState] = useState(() => selectRef.current(audio.state));
 
   useEffect(() => {
-    const unsubscribe = audio.subscribe((state: TAudioState) => startTransition(() =>
-      setState(state)
-    ));
+    const unsubscribe = audio.subscribe((state: TAudioState) => {
+      const selected = selectRef.current(state);
+      if (selected !== selectedState) {
+        setSelectedState(selected);
+      }
+    });
 
     return unsubscribe;
-  }, [audio]);
+  }, [audio, selectedState]);
 
-  return [state, audio.controls];
+  return [selectedState, audio.controls] as const;
 }
 ```
 
@@ -127,6 +138,8 @@ By separating concerns, the rewritten version of the useAudio hook brings severa
 **Testing:** Testing becomes more manageable as we can test the core audio logic independently from the React integration.
 
 **Readability:** The code becomes more readable and understandable, fostering a conducive environment for collaboration and maintenance.
+
+**Optimization:** We can easily optimize render performance by selectively re-rendering only the components that depend on the audio state.
 
 [^1]: https://shorturl.at/bgjvQ
 [^2]: https://shorturl.at/lmrNW
