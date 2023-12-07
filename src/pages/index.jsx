@@ -140,7 +140,7 @@ function Work() {
   let work = [
     {
       company: 'react-qc',
-      title: 'https://npmjs.com/package/react-qc',
+      title: 'https://github.com/MuhamadAlfaifi/react-qc',
       logo: logoQc,
       start: '',
       end: '',
